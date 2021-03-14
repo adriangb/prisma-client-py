@@ -3,7 +3,12 @@
 # NOTE: we don't care which http method we use here as this file is replaced
 # with the method that the user specifies
 
+
+import warnings
+
+
 HTTP = None
+
 
 try:
     import aiohttp
@@ -22,4 +27,9 @@ else:
 
 
 if HTTP is None:
-    raise ImportError('Either aiohttp or requests must be installed.')
+    warnings.warn(
+        'Falling back to the stdlib http library\n'
+        'it is highly recommended to install prisma with either aiohttp or requests\n'
+        'e.g. pip install git+https://github.com/RobertCraigie/prisma-client-py#egg=prisma[aiohttp]'
+    )
+    from ._stdlib_http import HTTP, Response, client

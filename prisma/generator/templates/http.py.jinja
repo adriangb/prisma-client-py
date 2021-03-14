@@ -2,7 +2,9 @@
 # -- template http.py.jinja --
 {% if generator.config.http == 'aiohttp' %}
 from ._aiohttp_http import *
-{% else %}
+{% else if generator.config.http == 'requests' %}
 from ._requests_http import *
+{% else if generator.config.http == 'stdlib' %}
+from ._stdlib_http import *
 {% endif %}
 

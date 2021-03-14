@@ -39,6 +39,7 @@ class TransformChoices(str, enum.Enum):
 
 
 class HttpChoices(str, enum.Enum):
+    stdlib = 'stdlib'
     aiohttp = 'aiohttp'
     requests = 'requests'
 
@@ -131,6 +132,12 @@ class Config(BaseModel):
         )
 
     transform_fields: Optional[TransformChoices] = FieldInfo(alias='transformFields')
+
+    # NOTE: we do not set the default based off of
+    #       the library the user has installed so
+    #       that the same schema will always generate
+    #       the same type of client independent of the
+    #       state of the system.
     http: HttpChoices = HttpChoices.aiohttp
     partial_type_generator: Optional[Module] = FieldInfo(alias='partialTypeGenerator')
 
@@ -144,13 +151,15 @@ class Config(BaseModel):
     def http_matches_installed_library(cls, value: HttpChoices) -> str:
         # pylint: disable=unused-import, import-outside-toplevel
         try:
-            if value == 'aiohttp':
+            if value == HttpChoices.aiohttp:
                 import aiohttp
-            elif value == 'requests':
+            elif value == HttpChoices.requests:
                 import requests
+            elif value == HttpChoices.stdlib:
+                pass
             else:  # pragma: no cover
                 raise RuntimeError(f'Unhandled validator check for {value}')
-        except ModuleNotFoundError as exc:
+        except (ModuleNotFoundError, ImportError) as exc:
             # pylint: disable=line-too-long
             raise ValueError(
                 f'Missing library for "{value}"\n  '

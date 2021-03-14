@@ -28,8 +28,14 @@ The HTTP library that will be used by Prisma Client Python can be configured usi
 
 Valid values are:
 
+* stdlib
 * aiohttp
 * requests
+
+If stdlib is used then the generated client will be synchronous, e.g.
+```py
+user = client.user.find_unique(where={'id': 'user_id'})
+```
 
 If aiohttp is used then the generated client will be asynchronous, e.g.
 ```py
