@@ -424,6 +424,7 @@ class Field(BaseModel):
             and not self.is_updated_at
             and not self.has_default_value
             and not self.relation_name
+            and not self.is_list
         )
 
     @property

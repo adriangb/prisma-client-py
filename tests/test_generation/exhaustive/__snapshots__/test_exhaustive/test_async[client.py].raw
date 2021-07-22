@@ -88,6 +88,7 @@ model User {
   boolean          Boolean
   optional_boolean Boolean?
   posts            Post[]
+  string_list      String[]
 }
 
 model M {

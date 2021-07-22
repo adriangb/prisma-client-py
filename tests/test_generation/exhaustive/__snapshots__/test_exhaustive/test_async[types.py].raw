@@ -1056,6 +1056,7 @@ class UserOptionalCreateInput(TypedDict, total=False):
     optional_enum: Optional['enums.ABeautifulEnum']
     optional_boolean: Optional[bool]
     posts: Optional['PostCreateManyNestedWithoutRelationsInput']
+    string_list: Optional[List[str]]
 
 
 class UserCreateInput(UserOptionalCreateInput):
@@ -1121,6 +1122,7 @@ class UserUpdateInput(TypedDict, total=False):
     boolean: Optional[Union['UserUpdatebooleanInput', bool]]
     optional_boolean: Optional[Union['UserUpdateoptional_booleanInput', bool]]
     posts: Optional['PostUpdateManyWithoutRelationsInput']
+    string_list: Optional[List[str]]
 
 
 class UserUpdateManyMutationInput(TypedDict, total=False):
@@ -1138,6 +1140,7 @@ class UserUpdateManyMutationInput(TypedDict, total=False):
     boolean: Optional[Union['UserUpdatebooleanInput', bool]]
     optional_boolean: Optional[Union['UserUpdateoptional_booleanInput', bool]]
     posts: Optional['PostUpdateManyWithoutRelationsInput']
+    string_list: Optional[List[str]]
 
 
 class UserUpdateidInput(TypedDict, total=False):
@@ -1221,6 +1224,7 @@ class UserOrderByInput(TypedDict, total=False):
     optional_enum: Optional['SortOrder']
     boolean: Optional['SortOrder']
     optional_boolean: Optional['SortOrder']
+    string_list: Optional['SortOrder']
 
 
 # recursive User types

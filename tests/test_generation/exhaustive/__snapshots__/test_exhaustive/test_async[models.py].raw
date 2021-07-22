@@ -158,6 +158,7 @@ class User(BaseModel):
     boolean: bool
     optional_boolean: Optional[bool]
     posts: Optional[List['models.Post']]
+    string_list: List[str]
 
     Config = Config
 

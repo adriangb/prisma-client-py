@@ -85,6 +85,7 @@ DEFAULT_FIELDS_MAPPING = {
         'optional_enum',
         'boolean',
         'optional_boolean',
+        'string_list',
     ],
     'M': [
         'id',

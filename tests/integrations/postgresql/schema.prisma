@@ -4,7 +4,7 @@ datasource db {
 }
 
 generator db {
-  provider             = "python3 -m prisma"
+  provider             = "prisma-client-py"
   recursive_type_depth = 5
   http                 = "aiohttp"
 }
@@ -16,6 +16,7 @@ model User {
   name       String
   role       Role     @default(USER)
   posts      Post[]
+  emails     String[]
 }
 
 model Post {
